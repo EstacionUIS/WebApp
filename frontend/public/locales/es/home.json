@@ -1,0 +1,92 @@
+{
+    "intro": {
+        "title": "Conectando con el Cosmos",
+        "paragraph": "Esta estación terrestre, construida por estudiantes de la Universidad Industrial de Santander, es una ventana al espacio exterior. Nos permite recibir señales y datos de satélites que orbitan la Tierra, contribuyendo a la investigación científica y expandiendo nuestra comprensión del cosmos."
+    },
+    "exploration": {
+        "title": "Explorando el universo",
+        "paragraph": "Utiliza una radio definida por software (SDR) para recibir señales de radio de satélites en órbita. Puede rastrear satélites a medida que pasan por encima dentro del alcance, capturar sus transmisiones y decodificar datos valiosos. Estos datos pueden incluir imágenes, lecturas de sensores y otra información que nos ayuda a comprender nuestro planeta y el espacio que lo rodea.",
+        "images": {
+            "1": {
+                "alt": "Imagen Satelital ATP",
+                "caption": "Imagen en blanco y negro del NOAA-15"
+            },
+            "2": {
+                "alt": "Imagen Satelital ATP",
+                "caption": "Imagen en blanco y negro del NOAA-15"
+            }
+        }
+    },
+    "campus": {
+        "title": "Ubicación en el Campus",
+        "paragraph": "La estación terrestre se encuentra en el laboratorio de la Escuela de Ingeniería Eléctrica, Electrónica y de Telecomunicaciones (E3T) de la Universidad Industrial de Santander. Está alojada en un gabinete resistente a la intemperie dentro del edificio.",
+        "images": {
+            "1": {
+                "alt": "Estación dentro del laboratorio.",
+                "caption": "Montaje y ubicación dentro de las instalaciones"
+            },
+            "2": {
+                "alt": "Instalaciones del laboratorio",
+                "caption": "El laboratorio desde afuera"
+            }
+        }
+    },
+    "materials": {
+        "title": "Dentro de la Estación",
+        "paragraph": "La estación terrestre está construida utilizando una computadora Raspberry Pi, un receptor RTL-SDR, una antena monopolo y otros componentes esenciales. Estos componentes trabajan juntos para capturar, procesar y transmitir datos satelitales.",
+        "content": {
+            "raspberry": {
+                "title": "Raspberry Pi",
+                "paragraph": "Utilizamos una Raspberry Pi 3 Modelo B+ como el cerebro de nuestra estación terrestre. Esta computadora pequeña y asequible es lo suficientemente potente como para ejecutar el software SatNOGS y controlar los otros componentes. Tiene un procesador de cuatro núcleos de 64 bits a 1,4 GHz, 1 GB de RAM y conectividad Wi-Fi y Bluetooth integrada.",
+                "button": "Sitio web de Raspberry",
+                "image": {
+                    "alt": "Una Raspberry Pi B+",
+                    "caption": "Modelo Raspberry Pi B+."
+                }
+            },
+            "sdr": {
+                "title": "Antena Monopolo y SDR",
+                "paragraph": "La antena monopolo es una antena vertical que se utiliza para recibir señales de satélites. Está instalada en el techo del edificio E3T y conectada al receptor RTL-SDR mediante un cable coaxial. Este tipo de antena es adecuada para recibir señales de satélites en una variedad de órbitas.",
+                "button": "Sitio web de SDR",
+                "image": {
+                    "alt": "RTL-SDR USB",
+                    "caption": "RTL-SDR USB v3."
+                }
+            },
+            "power": {
+                "title": "Fuente de alimentación",
+                "paragraph": "Una fuente de alimentación conmutada industrial de 5V y 10A proporciona energía confiable a todos los componentes de la estación terrestre. Está diseñada para funcionar continuamente y proporcionar un voltaje estable incluso en condiciones de carga variables.",
+                "image": {
+                    "alt": "Fuente de Alimentación Industrial.",
+                    "caption": "Fuente de Alimentación Industrial."
+                }
+            },
+            "enclosure": {
+                "title": "Gabinete", 
+                "paragraph": "Todos los componentes de la estación terrestre están alojados en un gabinete IP65 resistente a la intemperie. Esto los protege del polvo, la lluvia y otros factores ambientales, lo que garantiza la fiabilidad a largo plazo de la estación.",
+                "image": {
+                    "alt": "Gabinete a prueba de agua.",
+                    "caption": "Gabinete a prueba de agua montado en el laboratorio."
+                }
+            },
+            "sofware": {
+                "title": "Software",
+                "paragraph": "El software SatNOGS se ejecuta en la Raspberry Pi y controla todos los aspectos de la estación terrestre, desde el seguimiento de satélites hasta la decodificación de datos. Es un software de código abierto que permite una amplia gama de personalizaciones y extensiones.", 
+                "button": "Sitio web de configuración",
+                "image": {
+                    "alt": "Foto de la configuración local de SSH",
+                    "caption": "Foto de la configuración local de SSH."
+                }
+            }
+        }
+    },
+    "satnogs": {
+        "title": "SatNOGS: Una red",
+        "paragraph": "SatNOGS es una red de código abierto de estaciones terrestres satelitales en todo el mundo, construida y operada por una comunidad de voluntarios. La red permite a cualquier persona rastrear satélites, recibir sus señales y recopilar datos valiosos, lo que hace que la tecnología satelital sea más accesible. La mayor parte del proceso está automatizado y los usuarios pueden programar observaciones de satélites a través del sitio web de SatNOGS.",
+        "button": "Sitio web de SatNOGS",
+        "image": {
+            "alt": "Captura del sitio web",
+            "caption": "Captura del sitio web"
+        }
+    }
+}

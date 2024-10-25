@@ -1,0 +1,92 @@
+{
+    "intro": {
+        "title": "Connecting to the Cosmos",
+        "paragraph": "This ground station, built by students at the Industrial University of Santander, is a window to outer space. It allows us to receive signals and data from satellites orbiting Earth, contributing to scientific research and expanding our understanding of the cosmos."
+    },
+    "exploration": {
+        "title": "Exploring the universe",
+        "paragraph": "It uses a software-defined radio (SDR) to receive radio signals from orbiting satellites. It can track satellites as they pass overhead within range, capture their transmissions, and decode valuable data. This data can include images, sensor readings, and other information that helps us understand our planet and the space around it.",
+        "images": {
+            "1": {
+                "alt": "ATP Satelittal Image",
+                "caption": "Black & white NOAA-15 image"
+            },
+            "2": {
+                "alt": "ATP Satelittal Image",
+                "caption": "Black & white NOAA-15 image"
+            }
+        }
+    },
+    "campus": {
+        "title": "Location At Campus",
+        "paragraph": "The ground station is located at the laboratory of School of Electrical, Electronic and Telecommunications Engineering (E3T) at the Industrial University of Santander. It is housed in a weatherproof enclosure inside the building.",
+        "images": {
+            "1": {
+                "alt": "Station inside the laboratory.",
+                "caption": "Mounting and location inside the facilities"
+            },
+            "2": {
+                "alt": "Laboratory's facilities",
+                "caption": "The laboratory from outside"
+            }
+        }
+    },
+    "materials": {
+        "title": "Inside the Station",
+        "paragraph": "The ground station is built using a Raspberry Pi computer, an RTL-SDR receiver, a monopole antenna, and other essential components. These components work together to capture, process, and transmit satellite data.",
+        "content": {
+            "raspberry": {
+                "title": "Raspberry Pi",
+                "paragraph": "We use a Raspberry Pi 3 Model B+ as the brain of our ground station. This small and affordable computer is powerful enough to run the SatNOGS software and control the other components. It has a 1.4 GHz 64-bit quad-core processor, 1 GB of RAM, and built-in Wi-Fi and Bluetooth connectivity.",
+                "button": "Raspberry Website",
+                "image": {
+                    "alt": "A raspberry pi b+",
+                    "caption": "Raspberry Pi B+ Model."
+                }
+            },
+            "sdr": {
+                "title": "Monopole Antenna and SDR",
+                "paragraph": "The monopole antenna is a vertical antenna that is used to receive signals from satellites. It is installed on the roof of the E3T building and connected to the RTL-SDR receiver using a coaxial cable. This type of antenna is suitable for receiving signals from satellites in a variety of orbits.",
+                "button": "SDR Website",
+                "image": {
+                    "alt": "RTL-SRD USB",
+                    "caption": "RTL-SDR USB v3."
+                }
+            }, 
+            "power": {
+                "title": "Power Source",
+                "paragraph": "A 5V, 10A industrial switching power supply provides reliable power to all the components of the ground station. It is designed to operate continuously and provide stable voltage even under varying load conditions.",
+                "image": {
+                    "alt": "Industrial Power Source.",
+                    "caption": "Industrial Power Source."
+                }
+            },
+            "enclosure": {
+                "title": "Enclosure",
+                "paragraph": "All the components of the ground station are housed in a weatherproof IP65 enclosure. This protects them from dust, rain, and other environmental factors, ensuring the long-term reliability of the station.",
+                "image": {
+                    "alt": "Waterproof enclosure.",
+                    "caption": "Waterproof enclosure mounted on the laboratory."
+                }
+            },
+            "sofware": {
+                "title": "Software",
+                "paragraph": "All the components of the ground station are housed in a weatherproof IP65 enclosure. This protects them from dust, rain, and other environmental factors, ensuring the long-term reliability of the station.",
+                "button": "Client Setup Website",
+                "image": {
+                    "alt": "Photo of local SSH setup",
+                    "caption": "Photo of local SSH setup."
+                }
+            }
+        }
+    },
+    "satnogs": {
+        "title": "SatNOGS: A network",
+        "paragraph": "SatNOGS is an open-source network of satellite ground stations around the world, built and operated by a community of volunteers. The network allows anyone to track satellites, receive their signals, and collect valuable data, making satellite technology more accessible. Most of the process is automated sers can schedule observations of satellites through the SatNOGS website",
+        "button": "SatNOGS Website",
+        "image": {
+            "alt": "Capture of website",
+            "caption": "Capture of website"
+        }
+    }
+}

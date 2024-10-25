@@ -1,0 +1,10 @@
+{
+    "errors": {
+        "basic": {
+            "error": "Error",
+            "nullData": "Datos nulos"
+        }
+    },
+    "loading": "Cargando",
+    "refresh": "Actualizar"
+}

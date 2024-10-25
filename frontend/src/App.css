@@ -1,0 +1,98 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Target the first Navbar (top) */
+.navbar:first-of-type { 
+  background-color: var(--top-navbar-bg) !important; 
+  color: var(--bs-body-color) !important;
+}
+
+/* Target the second Navbar (bottom) */
+.navbar:nth-of-type(2) {
+  background-color: var(--bottom-navbar-bg) !important; 
+  color: var(--bs-body-color) !important;
+}
+
+.navbar .nav-link {
+  color: var(--bs-body-color) !important;
+  position: relative; 
+}
+
+/* Permanent effec to active route */
+.navbar .nav-link.active::before { 
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%; 
+  height: 3px;
+  background-color: var(--bs-body-color);
+  border-radius: 5px;
+}
+
+/* Hover effcet */
+.navbar .nav-link::before {
+  content: '';
+  position: absolute;
+  bottom: -5px; 
+  left: 50%; 
+  transform: translateX(-50%);
+  width: 0;
+  height: 3px; 
+  background-color: var(--bs-body-color);
+  border-radius: 5px;
+  transition: width 0.3s ease-in-out;
+}
+
+.navbar .nav-link:hover::before {
+  width: 100%; 
+}
+
+.navbar .navbar-brand, 
+.navbar .nav-link {
+  color: var(--bs-body-color) !important; 
+}
+
+.content-wrapper {
+  background-color: var(--content-bg); 
+  color: var(--content-color);
+  padding: 2rem;  
+}
+
+.selectors-container {
+  display: flex;
+}
+
+.btn > div {
+  padding: 5px;
+  display: inline-flex;
+  align-items:center;
+  gap: 10px;
+}
+
+/* Light Theme support */
+@media (prefers-color-scheme: light) {
+  :root {
+    --top-navbar-bg: #f8f9fa; 
+    --bottom-navbar-bg: #e9ecef; 
+    
+    --content-bg: #ffffff;
+    --content-color: #000000;
+  }
+}
+
+/* Dark Theme support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --top-navbar-bg: #343a40; 
+    --bottom-navbar-bg: #495057;
+
+    --content-bg: #292929;
+    --content-color: #ffffff;
+  }
+}

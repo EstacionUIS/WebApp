@@ -1,0 +1,33 @@
+{
+    "name": "Nombre",
+    "location": {
+        "title": "Ubicación",
+        "content": {
+            "altitude": "Altitud",
+            "latitude": "Latitud",
+            "longitude": "Longitud"
+        }
+    },
+    "antenna": {
+        "title": "Antena",
+        "content": {
+            "frequency": "Frecuencia",
+            "band": "Banda",
+            "type": "Tipo"
+        }
+    },
+    "status": "Estado",
+    "observations": "Observaciones",
+    "futureObservations": "Observacione Futuras", 
+    "description": "Descripción",
+    "time": {
+        "created": "Creado",
+        "lastSeen": "Última vez visto" 
+    },
+    "image": {
+        "alt": "Imagen de la estación",
+        "caption": "Una fotografía de la estación."
+    },
+    "button": "Actualizar", 
+    "lastUpdated": "Última actualización" 
+}

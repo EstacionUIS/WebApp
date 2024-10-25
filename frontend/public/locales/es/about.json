@@ -1,0 +1,10 @@
+{
+    "mission": {
+        "title": "Misión y Objetivos",
+        "goals": {
+            "1": "Proporcionar a los estudiantes e investigadores acceso a datos satelitales en tiempo real con fines educativos y de investigación.",
+            "2": "Contribuir a la red global SatNOGS y avanzar en la ciencia ciudadana en el campo de la observación satelital.",
+            "3": "Promover el interés en los campos STEM e inspirar a la próxima generación de ingenieros y científicos."
+        }
+    }
+}
