@@ -5,6 +5,14 @@
   text-align: center;
 }
 
+/* For smaller screens (e.g., phones) */
+@media (max-width: 576px) { 
+  #root {
+    max-width: none;
+    padding: 0rem;
+  }
+}
+
 /* Target the first Navbar (top) */
 .navbar:first-of-type { 
   background-color: var(--top-navbar-bg) !important; 
