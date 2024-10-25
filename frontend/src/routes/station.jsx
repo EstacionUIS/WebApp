@@ -1,97 +1,109 @@
-import { useState, useEffect } from "react";
-import { useTranslation } from 'react-i18next';
-import Spinner from 'react-bootstrap/Spinner';
-import Alert from 'react-bootstrap/Alert';
-import Button from 'react-bootstrap/Button';
+const express = require('express');
+const cors = require('cors');
+const axios = require('axios');
+const cheerio = require('cheerio');
 
-// CSS Syle
-import './station.css'
+const app = express();
 
-// FetchAPI
-import { getStationById } from '../api/satnogsAPI';
+// Set env
+require('dotenv').config(); 
 
-// Utils
-import { getTimeDifference } from "../utils/timeDiff";
-import { useUpdateTimeInterval } from "../utils/timeInterv";
+// Set whitelist
+const whitelist = [
+    process.env.FRONT_URL,
+];
 
-import Entry from "./station/entry";
-
-const stationId = 810;
-
-function Station() {
-    const [data, setData] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [showAlert, setShowAlert] = useState(false);
-    const [lastUpdated, setLastUpdated] = useState(null);
-
-    const { t } = useTranslation(['system']);
-
-    const fetchData = async () => {
-        setIsLoading(true);
-        try {
-            const station = await getStationById(stationId);
-            setData(station[0]);
-            setLastUpdated(new Date());
-            // Catched Data
-            localStorage.setItem(`station-${stationId}`, JSON.stringify({ data: station[0], timestamp: new Date() }));
-        } catch (err) {
-            setError(err);
-            setShowAlert(true); 
-        } finally {
-            setIsLoading(false);
+const corsOptions = {
+    origin: function (origin, callback) {
+        if (!origin || whitelist.indexOf(origin) !== -1) { // Allow requests without origin (e.g., Postman)
+            callback(null, true);
+        } else {
+            console.log(`CORS error: Origin ${origin} not allowed.`); 
+            callback(new Error('Not allowed by CORS'));
         }
     }
+};
 
-    useEffect(() => {
-        const storedData = localStorage.getItem(`station-${stationId}`);
-        if (storedData) {
-            const { data, timestamp } = JSON.parse(storedData);
-            const hour = 60 * 60 * 1000;
-            if (new Date() - new Date(timestamp) < hour) {
-                setData(data);
-                setLastUpdated(new Date(timestamp));
-                setIsLoading(false);
-            } else {
-                fetchData();
-            }
+app.use(cors(corsOptions));
+app.use(express.json());
+
+app.get('/api/:type', async (req, res) => {
+    const apiType = req.params.type; 
+    const id = req.query.id; 
+
+    let apiUrl = ''; 
+    let headers = {};
+
+    try {
+        console.log(`Fetching data for type: ${apiType}, ID: ${id}`); 
+
+        if (apiType == 'satellites') {
+            apiUrl = `${process.env.DB_URL}/api/satellites/?format=json&norad_cat_id=${id}`; 
+            headers = { 
+                'accept': "application/json",
+                'Authorization': `${process.env.API_KEY}`,
+                'Cookie': `sessionid=${process.env.API_KEY}` 
+            };
         } else {
-            fetchData();
+            apiUrl = `${process.env.API_URL}/api/${apiType}`;
+            if(apiType == 'observations') {
+                apiUrl = `${apiUrl}/?format=json&ground_station=${id}`;
+            } else {
+                apiUrl = `${apiUrl}/?format=json&id=${id}`;
+            }
         }
-    }, []);
 
-    useUpdateTimeInterval(() => 
-        setLastUpdated(new Date)
-    );
+        console.log(`Fetching from URL: ${apiUrl}`);
 
-    return (
-        <div>
-            {showAlert && ( 
-                // Alert is shown regardless of loading state
-                <Alert variant="danger" onClose={() => setShowAlert(false)} dismissible>
-                    <Alert.Heading>{t('errors.basic.error')}</Alert.Heading>
-                    <p>
-                        {error.message}
-                    </p>
-                </Alert>
-            )}
-            <div className="station-content-wrapper">
-                {isLoading ?
-                    <div className="d-flex justify-content-center align-items-center vh-100">
-                        <Spinner animation="border" role="status">
-                            <span className="visually-hidden">{t('loading')}...</span>
-                        </Spinner>
-                    </div>
-                    :
-                    <Entry data={data}/>
-                }
-            </div>
-            <div className="button-update-container">
-                <b>{lastUpdated ? `${t('lastUpdated')}: ${getTimeDifference(lastUpdated)}` : ""}</b>
-                <Button variant="primary" onClick={() => fetchData()}> {t('refresh')} </Button>
-            </div>
-        </div>
-    );
-}
+        const response = await axios.get(apiUrl, { headers });
+        const data = response.data;
 
-export default Station;
+        console.log(`Data fetched successfully:`, data); // Log the fetched data (consider logging a portion if it's too large)
+        res.json(data);
+
+    } catch (error) {
+        console.error(`Error fetching data: ${error.message}`); 
+        if (error.response) {
+            console.error("Response data:", error.response.data);
+            console.error("Response status:", error.response.status);
+        }
+        res.status(500).json({ error: 'Failed to fetch data from the API'});   
+    }
+});
+
+app.get('/satellite/:type', async (req, res) => {
+    try {
+        const id = req.query.id;
+        const url = `${process.env.DB_URL}/satellite/${id}`;
+        console.log(`Fetching HTML from: ${url}`);
+
+        const response = await fetch(url);
+        const html = await response.text();
+
+        const $ = cheerio.load(html);
+        const descriptionText = $('.card.card-info>.card-body>p').text();
+        
+        console.log(`Extracted description: ${descriptionText}`);
+        res.json({ "Description": descriptionText });
+
+    } catch (error) {
+        console.error(`Error fetching data: ${error.message}`); 
+        res.status(500).json({ error: 'Failed to fetch HTML text'});   
+    }
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+    if (err.message === 'Not allowed by CORS') {
+        console.error(`CORS error: ${err.message}`); 
+        res.status(403).json({ error: 'CORS error: Access denied.' });
+    } else {
+        next(err);
+    }
+});
+
+const port = process.env.PORT || 1000; 
+
+app.listen(port, () => {
+    console.log(`Proxy server listening at port: ${port}`);
+});
